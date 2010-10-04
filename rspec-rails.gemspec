@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-$LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
 require "rspec/rails/version"
+require "rspec/core/version"
 
 Gem::Specification.new do |s|
   s.name        = "rspec-rails"
@@ -57,6 +57,13 @@ Gem::Specification.new do |s|
 **************************************************
 }
 
-  s.add_runtime_dependency "rspec", RSpec::Rails::Version::STRING
+  s.add_runtime_dependency "rspec", RSpec::Core::Version::STRING
+
+  s.add_development_dependency "rake",               ">= 0.8.7"
+  s.add_development_dependency "cucumber",           ">= 0.9.1"
+  s.add_development_dependency "aruba",              ">= 0.2.3"
+  s.add_development_dependency "webrat",             ">= 0.7.2.beta.1"
+  s.add_development_dependency "sqlite3-ruby",       ">= 1.3.1"
+  s.add_development_dependency "autotest",           ">= 4.4.1"
 end
 

@@ -1,24 +1,24 @@
-source "http://rubygems.org"
+source :rubygems
+
+gems = %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec]
+gems.each do |g|
+  $LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__) + "/../#{g}/lib")
+end
+gemspec
+gems.each do |g|
+  @dependencies.reject!{|dep| dep.name == g}
+  gem g, :path => "../#{g}"
+end
+
+unless RUBY_PLATFORM == "java"
+  case RUBY_VERSION
+  when /^1.9.2/
+    gem "ruby-debug19"
+  when /^1.8/
+    gem "ruby-debug"
+    gem "rcov"
+  end
+end
 
 gem 'arel', :path => "./vendor/arel"
 gem 'rails', :path => "./vendor/rails"
-
-gem 'rspec-rails', :path => "."
-gem 'rspec-core', :path => "../rspec-core"
-gem 'rspec-expectations', :path => "../rspec-expectations"
-gem 'rspec-mocks', :path => "../rspec-mocks"
-gem 'rspec', :path => "../rspec"
-
-gem 'cucumber'
-gem 'aruba', ">= 0.2.0", :require => nil
-gem 'webrat', ">= 0.7.2.beta.1"
-gem 'sqlite3-ruby', :require => 'sqlite3'
-
-gem 'autotest'
-
-case RUBY_VERSION
-when /^1\.9/
-  gem 'ruby-debug19'
-when /^1\.8/
-  gem 'ruby-debug'
-end
